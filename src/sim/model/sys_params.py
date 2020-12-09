@@ -6,7 +6,7 @@ import os
 if os.environ.get('GITCOIN_LOAD_EXCEL') == 'yes':
     CONTRIBUTIONS_SEQUENCE = load_contributions_sequence_from_excel('../data/alternate_data.xls')
 else:
-    CONTRIBUTIONS_SEQUENCE: dict = load_contributions_sequence(100)
+    CONTRIBUTIONS_SEQUENCE: dict = load_contributions_sequence(4000)
 
 sys_params = {
     'contribution_sequence': [CONTRIBUTIONS_SEQUENCE],
