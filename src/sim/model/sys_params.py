@@ -3,10 +3,16 @@ from utils import load_contributions_sequence
 from collections import defaultdict
 import os
 
-if os.environ.get('GITCOIN_LOAD_EXCEL') == 'yes':
+load_from_excel: str = os.environ.get('GITCOIN_LOAD_EXCEL')
+if load_from_excel == 'yes':
     CONTRIBUTIONS_SEQUENCE = load_contributions_sequence_from_excel('../data/alternate_data.xls')
 else:
-    CONTRIBUTIONS_SEQUENCE: dict = load_contributions_sequence(4000)
+    timesteps = os.environ.get('GITCOIN_TIMESTEPS')
+    if timesteps == 'all':
+        CONTRIBUTIONS_SEQUENCE: dict = load_contributions_sequence(None)
+    else:
+        CONTRIBUTIONS_SEQUENCE: dict = load_contributions_sequence(int(timesteps))
+        
 
 sys_params = {
     'contribution_sequence': [CONTRIBUTIONS_SEQUENCE],
