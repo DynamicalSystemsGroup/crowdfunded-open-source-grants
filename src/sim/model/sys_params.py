@@ -17,7 +17,7 @@ else:
 sys_params = {
     'contribution_sequence': [CONTRIBUTIONS_SEQUENCE],
     'trust_bonus_per_user': [defaultdict(lambda: 1.0)],
-    'v_threshold': [0.3],
-    'simple_threshold': [0.3],
+    'v_threshold': [25],
+    'simple_threshold': [25],
     'total_pot': [450000]
 }
