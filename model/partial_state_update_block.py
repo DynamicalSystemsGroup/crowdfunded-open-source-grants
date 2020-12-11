@@ -1,4 +1,4 @@
-from sim.model.logic import *
+from .parts.system import *
 
 partial_state_update_blocks = [
     {
@@ -7,7 +7,6 @@ partial_state_update_blocks = [
             'new_contribution': p_new_contribution
         },
         'variables': {
-            # 'network': s_append_edges,
             'contributions': s_append_contribution
         },
     },
