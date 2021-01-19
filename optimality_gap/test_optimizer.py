@@ -16,7 +16,7 @@ def utility_function(G): return nx.wiener_index(G)
 
 
 def test_utility():
-    test_graph: nx.Graph = create_test_graph(50, 42)
+    test_graph: nx.Graph = create_test_graph(30, 42)
     result: tuple = optimize_graph_connectivity(test_graph, utility_function)
     print(f"Best subgraph: {result[0]}")
     print(f"Best score: {result[1]}")

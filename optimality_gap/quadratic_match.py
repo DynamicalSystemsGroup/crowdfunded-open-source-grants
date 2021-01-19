@@ -47,15 +47,15 @@ def match_project(contribz, pair_totals, threshold):
     return np.real(proj_total)
 
 
-
 def quadratic_match(G: nx.Graph,
-                    threshold: float) -> dict:
+                    threshold: float,
+                    amount_key='amount_per_period_usdt') -> dict:
     G = G.copy()
     raw_contributions = G.edges(data=True)
 
     contributions = []
     for contrib in raw_contributions:
-        amount = contrib[2]['amount_per_period_usdt']
+        amount = contrib[2][amount_key]
         grant = contrib[1]
         element = {grant: (None, contrib[0], contrib[1], amount)}
         contributions.append(element)
@@ -70,7 +70,7 @@ def quadratic_match(G: nx.Graph,
 def quadratic_funding(G: nx.Graph,
                       total_pot: float) -> dict:
     G = G.copy()
-    grants = {label 
+    grants = {label
               for label, node in G.nodes(data=True)
               if node['type'] == 'grant'}
     M = nx.get_node_attributes(G, 'match')
@@ -89,5 +89,6 @@ def quadratic_funding(G: nx.Graph,
 
 
 def total_quadratic_match(G: nx.Graph,
-                          threshold: float) -> float:
-    return sum(quadratic_match(G, threshold).values())
+                          threshold: float,
+                          amount_key='amount_per_period_usdt') -> float:
+    return sum(quadratic_match(G, threshold, amount_key).values())
