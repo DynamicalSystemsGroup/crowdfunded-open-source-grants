@@ -12,12 +12,14 @@ def create_test_graph(n: int, seed: int) -> nx.Graph:
 
     return internet
 
-def utility_function(G): return nx.wiener_index(G)
+def utility_function(G):
+    return sum(val ** 2 for node, val in G.degree())
 
 
 def test_utility():
-    test_graph: nx.Graph = create_test_graph(30, 42)
+    test_graph: nx.Graph = create_test_graph(10, 42)
     result: tuple = optimize_graph_connectivity(test_graph, utility_function)
+    print(f"Base score: {utility_function(test_graph)}")
     print(f"Best subgraph: {result[0]}")
     print(f"Best score: {result[1]}")
 

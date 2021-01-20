@@ -25,6 +25,10 @@ def test_quadratic_match():
     return True
 
 
+
+def utility(g):
+    return total_quadratic_match(g, 0.3)
+
 def test_optimize_quadratic_match():
     G = create_test_graph(30, 42)
     utility = lambda g: total_quadratic_match(g, 0.3)
