@@ -52,7 +52,7 @@ def parse_contributions_data(input_path: str, output_csv_path: str=None) -> pd.D
 
     # Columns which are to keep into the dynamical network
     event_property_map = {'created_on': 'created_on',
-                          'originated_address': 'contributor',
+                          'id': 'contributor',
                           'title': 'grant',
                           'amount_per_period_usdt': 'amount',
                           'sybil_score': 'sybil_score',
@@ -69,7 +69,6 @@ def parse_contributions_data(input_path: str, output_csv_path: str=None) -> pd.D
                          .reset_index(drop=True)
                          .reset_index()
                          .rename(columns={'index': 'time_sequence'})
-                         .assign(contributor=lambda df: tokenize_contributor(df.contributor.astype(str)))
                          .assign(flag=0)
                       )
     
